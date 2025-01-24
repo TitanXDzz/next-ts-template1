@@ -6,7 +6,7 @@ import {
 import{
   useState
 } from "react"
-export default function Page() {
+const useClock = ()=>{
   const[second,setsec] = useState<number>();
   const[minute,setmin] = useState<number>();
   const[hour,sethour] = useState<number>();
@@ -16,9 +16,13 @@ export default function Page() {
     setmin(date.getMinutes());
     sethour(date.getHours());
   },1000)
+  return{second,minute,hour};
+}
+export default function Page() {
 let hours;
 let minutes;
 let seconds;
+const {second,minute,hour}=useClock();
 if(second===undefined||minute===undefined||hour===undefined){
   return(
   <> </>
