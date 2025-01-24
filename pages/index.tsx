@@ -1,15 +1,11 @@
-import { datePickerAnatomy } from "@ark-ui/react";
+
 import {
-  Box,
   Heading,
-  VStack,
-  Badge,
-  AbsoluteCenter, Center, Circle, Square,
+  AbsoluteCenter,
 } from "@chakra-ui/react"
 import{
   useState
 } from "react"
-import { TiEdit } from "react-icons/ti";
 export default function Page() {
   const[second,setsec] = useState<number>();
   const[minute,setmin] = useState<number>();
@@ -23,6 +19,11 @@ export default function Page() {
 let hours;
 let minutes;
 let seconds;
+if(second===undefined||minute===undefined||hour===undefined){
+  return(
+  <> </>
+  )
+}
 if(hour<10)
   hours='0'+hour;
 else
@@ -35,11 +36,6 @@ if(second<10)
    seconds='0'+second;
 else
    seconds=''+second;
-if(second===undefined){
-  return(
-  <> </>
-  )
-}
 return (
     <>
       <Heading size="6xl"><AbsoluteCenter>{hours} : {minutes} : {seconds}</AbsoluteCenter></Heading>
