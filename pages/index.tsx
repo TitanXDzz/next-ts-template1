@@ -16,7 +16,7 @@ const useClock = ()=>{
     setmin(date.getMinutes());
     sethour(date.getHours());
   },1000)
-  return{second,minute,hour};
+  return{second,second,hour};
 }
 export default function Page() {
 let hours;
