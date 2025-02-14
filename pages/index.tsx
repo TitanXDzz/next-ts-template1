@@ -91,7 +91,36 @@ return (
     </>
   )
 }
+const Line=(inpu:any)=>{
+ let{origin,length,angle}=inpu;
+ const X=origin+(length*Math.sin(angle*Math.PI/180))/2
+ const Y=origin-(length*Math.cos(angle*Math.PI/180))/2
+ let Xstr=X+"px"
+ let Ystr=Y+"px"
+ let Anglestr=angle+"deg"
+ return(<>
+ <Box
+ position="absolute">
+ <Box
+ position="relative"
+ top={Ystr}
+ left={Xstr}
+ width={"10px"}
+ height={length+"px"}
+ bgColor={"black"}
+ rotate={Anglestr}
+ >  
+ </Box>
+ </Box>
+ </>)
+}
 const AnalogClock=()=>{
+  const {hour,minute,second}=useClock();
+  if(second===undefined||minute===undefined||hour===undefined){
+    return(
+    <> </>
+    )
+  }
   return(<>
     <AbsoluteCenter>
      <Box
@@ -106,10 +135,34 @@ const AnalogClock=()=>{
     <Box
      width={"16px"}
      height={"16px"}
-     bgColor={"black"}
+     bgColor={"yellow"}
      borderRadius={"8px"}
-     ></Box>
+     
+     >
+      <AbsoluteCenter>
+      <Line
+      
+    angle={minute*6+second/10}
+    length={150}
+    origin={0}
+    > </Line>
     </AbsoluteCenter>
-  
+    <AbsoluteCenter>
+      <Line
+    angle={second*6}
+    length={200}
+    origin={0}
+    > </Line>
+    </AbsoluteCenter>
+    <AbsoluteCenter>
+      <Line
+    angle={hour*30+minute/2+second/120}
+    length={100}
+    origin={0}
+    > </Line>
+    </AbsoluteCenter>
+     </Box>
+    </AbsoluteCenter>
+    
   </>)
 }
